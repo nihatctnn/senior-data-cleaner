@@ -27,7 +27,7 @@ class DataPreprocessor:
         """
 
     def __init__(self):
-        self.dataFinder = DataFinder()
+        self.dataFinder = DataFinder();
         self.mongo_conn = MongoConnector()
 
         self.mongo_conn.start_connection()
