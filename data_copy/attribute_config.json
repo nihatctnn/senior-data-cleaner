@@ -1,0 +1,84 @@
+{
+  "İlan No" : {
+    "operation" : "DELETE"
+  },
+  "İlan Tarihi" : {
+    "operation" : "DELETE"
+  },
+  "Marka": {
+    "operation" : "LABEL_ENCODE",
+    "initial_num" : 10000
+  },
+  "Seri": {
+    "operation" : "LABEL_ENCODE",
+    "initial_num" : 20000
+  },
+  "Model": {
+    "operation" : "LABEL_ENCODE",
+    "initial_num" : 30000
+  },
+  "Yıl" : {
+    "operation" : ""
+  },
+  "Kilometre" : {
+    "operation" : ""
+  },
+  "Vites Tipi": {
+    "operation" : "LABEL_ENCODE",
+    "initial_num" : 100
+  },
+  "Yakıt Tipi": {
+    "operation" : "LABEL_ENCODE",
+    "initial_num" : 200
+  },
+  "Kasa Tipi": {
+    "operation" : "LABEL_ENCODE",
+    "initial_num": 300
+  },
+  "Renk": {
+    "operation" : "LABEL_ENCODE",
+    "initial_num": 400
+  },
+  "Motor Hacmi" : {
+    "operation" : "DELETE"
+  },
+  "Motor Gücü" : {
+    "operation" : "DELETE"
+  },
+  "Çekiş" : {
+    "operation" : "LABEL_ENCODE",
+    "initial_num": 500
+  },
+  "Koltuk Sayısı" : {
+    "operation" : "DELETE"
+  },
+  "Araç Cinsi" : {
+    "operation" : "DELETE"
+  },
+  "Ort. Yakıt Tüketimi" : {
+    "operation" : "DELETE"
+  },
+  "Yakıt Deposu" : {
+    "operation" : "DELETE"
+  },
+  "Boya-değişen" : {
+    "operation" : "LABEL_ENCODE",
+    "initial_num": 600
+  },
+  "Takasa Uygun" : {
+    "operation" : "DELETE"
+  },
+  "Kimden" : {
+    "operation" : "DELETE"
+  },
+  "Fiyat" : {
+    "operation" : ""
+  },
+  "Description" : {
+    "operation" : "DELETE"
+  },
+  "" : {
+    "operation" : ""
+  }
+
+}
