@@ -161,7 +161,7 @@ class DataPreprocessor:
             return False
 
         # Retrieve data from the MongoDB collection using the get_data method
-        result = self.mongo_conn.get_data()
+        result = self.mongo_conn.fetch_all_years()
 
         # Check if the retrieved result is not None before iterating
         if result is not None:
