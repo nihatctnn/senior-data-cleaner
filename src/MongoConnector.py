@@ -118,7 +118,7 @@ class MongoConnector:
                   F"[FINISH] SUCCESSFULLY COPIED S:{source_collection_name} D: {destination_collection_name}")
             return True
 
-    def get_data(self):
+    def fetch_all_years(self):
 
         """
             Retrieves the 'Year' fields of all documents in a MongoDB collection.
