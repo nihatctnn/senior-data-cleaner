@@ -139,5 +139,61 @@ class DataPreprocessor:
             print(bcolors.FAIL, "[FAIL] FAIL TO CREATING LABEL MAP")
             return False
 
+    def convert_to_integer(self):
 
+        """
+        Converts the values of the "Yıl" field in a MongoDB collection to integers.
 
+        - Prints a start message for the integer conversion process.
+        - Checks if edit mode is active; if not, exits with False.
+        - Retrieves data from MongoDB using get_data.
+        - Iterates through each document, extracting "Yıl" field values.
+        - Attempts to convert non-None string values to integers.
+        - Updates MongoDB collection with successful conversions.
+        - Prints a completion message for the conversion process.
+        - Returns True if successful, False if data retrieval fails.
+        """
+
+        print(bcolors.OKCYAN, f"[START] STARTING INTEGER CONVERSION")
+
+        # Check if the edit mode is active using a function is_edit_mode_active()
+        if not is_edit_mode_active():
+            return False
+
+        # Retrieve data from the MongoDB collection using the get_data method
+        result = self.mongo_conn.get_data()
+
+        # Check if the retrieved result is not None before iterating
+        if result is not None:
+            # Iterate through each document in the result
+            for document in result:
+                # Get the value of the field "Yıl" from the current document
+                year_value = document.get("Yıl")
+
+                # Check if the year_value is not None
+                if year_value is not None:
+                    data_type = type(year_value)
+
+                    # If the data type is a string, perform the conversion to an integer
+                    if data_type == str:
+                        # Remove double quotes from the string
+                        year_value = year_value.strip('"')
+
+                        try:
+                            # Attempt to convert the year value to an integer
+                            year_value_as_int = int(year_value)
+
+                            # Update the MongoDB collection with the new integer value
+                            self.mongo_conn.update_documents_by_model(model="Yıl", model_value=year_value,
+                                                                      new_field_value=year_value_as_int)
+
+                        except ValueError:
+                            # Handle the case when the conversion to an integer fails
+                            print(f"Error: The value '{year_value}' could not be converted to an integer.")
+
+            print(bcolors.OKGREEN, "[FINISH] INTEGER CONVERSION COMPLETE")
+            return True
+        else:
+            # Handle the case when the result from the MongoDB query is None
+            print(bcolors.FAIL, "[FAIL] FAILED TO RETRIEVE DATA")
+            return False

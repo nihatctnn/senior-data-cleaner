@@ -1,5 +1,6 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, collection
 from pymongo.errors import BulkWriteError
+
 import config
 from src.utils import bcolors
 
@@ -116,3 +117,23 @@ class MongoConnector:
             print(bcolors.OKGREEN,
                   F"[FINISH] SUCCESSFULLY COPIED S:{source_collection_name} D: {destination_collection_name}")
             return True
+
+    def get_data(self):
+
+        """
+            Retrieves the 'Year' fields of all documents in a MongoDB collection.
+
+            This method fetches the 'Year' fields of all documents in the MongoDB collection.
+            It involves a process aimed at obtaining the values of the 'Year' fields from every document in the database.
+
+            Args:
+                None
+
+            Returns:
+                result: The retrieved data containing the 'Year' fields
+        """
+
+        # Fetching the 'Year' fields of all documents
+        result = self.collection.find({}, {"_id": 0, "Yıl": 1})
+
+        return result

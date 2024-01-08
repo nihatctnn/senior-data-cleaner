@@ -18,7 +18,7 @@
     "initial_num" : 30000
   },
   "Yıl" : {
-    "operation" : ""
+    "operation" : "CONVERT"
   },
   "Kilometre" : {
     "operation" : ""
