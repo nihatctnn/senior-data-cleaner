@@ -165,7 +165,7 @@ class DataPreprocessor:
 
         # Check if the retrieved result is not None before iterating
         if result is not None:
-            # !!! new
+
             # Iterate through each document in the result
             for document in tqdm(result, desc="Processing", unit="field"):
                 # Get the value of the field "Yıl" from the current document
