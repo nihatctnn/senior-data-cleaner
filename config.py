@@ -7,4 +7,4 @@ FIELD_CONFIG_PATH = "./data/attribute_config.json"
 
 SAFE_MODE = 1
 EDIT_MODE = 1
-DB_ERROR_IGNORE = 1
+DB_ERROR_IGNORE = 0

@@ -74,7 +74,7 @@ class MongoConnector:
         # Define update data to set the new field value in the documents.
         update_data = {"$set": {model: new_field_value}}
         # Perform the update operation on multiple documents that match the query.
-        result = self.collection.update_many(query, update_data)
+        result = self.collection.update_one(query, update_data)
 
         # Check if the update operation was successful or ignored based on configuration.
         if not config.DB_ERROR_IGNORE and result.modified_count <= 0:

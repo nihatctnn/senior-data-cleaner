@@ -225,11 +225,12 @@ class DataPreprocessor:
                     # If the data type is a string, perform the conversion to an integer
                     if km_type == str:
                         # Remove " km" and dots from the string
-                        km_value = km_value.replace(" km", "").replace(".", "")
+                        km_value_sp = km_value.split(" ")[0].replace(".","")
+
 
                         try:
                             # Attempt to convert the km value to an integer
-                            km_value_as_int = int(km_value)
+                            km_value_as_int = int(km_value_sp)
 
                             # Update the MongoDB collection with the new integer value
                             self.mongo_conn.update_documents_by_model(model="Kilometre", model_value=km_value,
@@ -237,7 +238,7 @@ class DataPreprocessor:
 
                         except ValueError as e:
                             # Handle the case when the conversion to an integer fails
-                            print(f"Error: The value '{km_value}' could not be converted to an integer. Error: {e}")
+                            print(f"Error: The value '{km_value_sp}' could not be converted to an integer. Error: {e}")
 
             print(bcolors.OKGREEN, "[FINISH] INTEGER CONVERSION COMPLETE")
             return True
