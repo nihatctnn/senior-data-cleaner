@@ -20,4 +20,7 @@ time.sleep(2)
 # dp.convert_to_integer()
 
 # Convert the 'Kilometre' fields to integers
-dp.convert_km_to_integer()
+# dp.convert_km_to_integer()
+
+# Convert the 'Fiyat' fields to integers
+dp.convert_fiyat_to_integer()

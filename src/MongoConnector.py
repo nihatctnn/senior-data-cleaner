@@ -157,3 +157,22 @@ class MongoConnector:
         result = self.collection.find({}, {"_id": 0, "Kilometre": 1})
 
         return result
+
+    def fetch_all_fiyat(self):
+        """
+            Retrieves the 'Fiyat' fields of all documents in a MongoDB collection.
+
+            This method fetches the 'Fiyat' fields of all documents in the MongoDB collection.
+            It involves a process aimed at obtaining the values of the 'Fiyat' fields from every document in the database.
+
+            Args:
+                None
+
+            Returns:
+                result: The retrieved data containing the 'Fiyat' fields
+        """
+
+        # Fetching the 'Fiyat' fields of all documents
+        result = self.collection.find({}, {"_id": 0, "Fiyat": 1})
+
+        return result
