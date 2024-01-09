@@ -17,4 +17,7 @@ time.sleep(2)
 # dp.remove_unused_field()
 
 # Convert the 'Year' fields to integers
-dp.convert_to_integer()
+# dp.convert_to_integer()
+
+# Convert the 'Kilometre' fields to integers
+dp.convert_km_to_integer()

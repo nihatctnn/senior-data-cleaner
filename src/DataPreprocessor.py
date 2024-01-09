@@ -188,9 +188,56 @@ class DataPreprocessor:
                             self.mongo_conn.update_documents_by_model(model="Yıl", model_value=year_value,
                                                                       new_field_value=year_value_as_int)
 
-                        except ValueError:
+                        except ValueError as e:
                             # Handle the case when the conversion to an integer fails
-                            print(f"Error: The value '{year_value}' could not be converted to an integer.")
+                            print(f"The value '{year_value}' could not be converted to an integer. Error: {e}")
+
+            print(bcolors.OKGREEN, "[FINISH] INTEGER CONVERSION COMPLETE")
+            return True
+        else:
+            # Handle the case when the result from the MongoDB query is None
+            print(bcolors.FAIL, "[FAIL] FAILED TO RETRIEVE DATA")
+            return False
+
+    def convert_km_to_integer(self):
+
+        print(bcolors.OKCYAN, f"[START] STARTING KM CONVERSION TO INTEGER")
+
+        # Check if the edit mode is active using a function is_edit_mode_active()
+        if not is_edit_mode_active():
+            return False
+
+        # Retrieve data from the MongoDB collection using the get_data method
+        result = self.mongo_conn.fetch_all_km()
+
+        # Check if the retrieved result is not None before iterating
+        if result is not None:
+
+            # Iterate through each document in the result
+            for document in tqdm(result, desc="Processing", unit="field"):
+                # Get the value of the field "Kilometre" from the current document
+                km_value = document.get("Kilometre")
+
+                # Check if the km_value is not None
+                if km_value is not None:
+                    km_type = type(km_value)
+
+                    # If the data type is a string, perform the conversion to an integer
+                    if km_type == str:
+                        # Remove " km" and dots from the string
+                        km_value = km_value.replace(" km", "").replace(".", "")
+
+                        try:
+                            # Attempt to convert the km value to an integer
+                            km_value_as_int = int(km_value)
+
+                            # Update the MongoDB collection with the new integer value
+                            self.mongo_conn.update_documents_by_model(model="Kilometre", model_value=km_value,
+                                                                      new_field_value=km_value_as_int)
+
+                        except ValueError as e:
+                            # Handle the case when the conversion to an integer fails
+                            print(f"Error: The value '{km_value}' could not be converted to an integer. Error: {e}")
 
             print(bcolors.OKGREEN, "[FINISH] INTEGER CONVERSION COMPLETE")
             return True

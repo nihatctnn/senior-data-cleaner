@@ -1,4 +1,4 @@
-from pymongo import MongoClient, collection
+from pymongo import MongoClient
 from pymongo.errors import BulkWriteError
 
 import config
@@ -121,19 +121,39 @@ class MongoConnector:
     def fetch_all_years(self):
 
         """
-            Retrieves the 'Year' fields of all documents in a MongoDB collection.
+            Retrieves the 'Yıl' fields of all documents in a MongoDB collection.
 
-            This method fetches the 'Year' fields of all documents in the MongoDB collection.
-            It involves a process aimed at obtaining the values of the 'Year' fields from every document in the database.
+            This method fetches the 'Yıl' fields of all documents in the MongoDB collection.
+            It involves a process aimed at obtaining the values of the 'Yıl' fields from every document in the database.
 
             Args:
                 None
 
             Returns:
-                result: The retrieved data containing the 'Year' fields
+                result: The retrieved data containing the 'Yıl' fields
         """
 
-        # Fetching the 'Year' fields of all documents
+        # Fetching the 'Yıl' fields of all documents
         result = self.collection.find({}, {"_id": 0, "Yıl": 1})
+
+        return result
+
+    def fetch_all_km(self):
+
+        """
+            Retrieves the 'Kilometre' fields of all documents in a MongoDB collection.
+
+            This method fetches the 'Kilometre' fields of all documents in the MongoDB collection.
+            It involves a process aimed at obtaining the values of the 'Kilometre' fields from every document in the database.
+
+            Args:
+                None
+
+            Returns:
+                result: The retrieved data containing the 'Kilometre' fields
+        """
+
+        # Fetching the 'Kilometre' fields of all documents
+        result = self.collection.find({}, {"_id": 0, "Kilometre": 1})
 
         return result
