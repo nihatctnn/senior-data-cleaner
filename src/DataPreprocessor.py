@@ -139,5 +139,155 @@ class DataPreprocessor:
             print(bcolors.FAIL, "[FAIL] FAIL TO CREATING LABEL MAP")
             return False
 
+    def convert_to_integer(self):
 
+        """
+        Converts the values of the "Yıl" field in a MongoDB collection to integers.
 
+        - Prints a start message for the integer conversion process.
+        - Checks if edit mode is active; if not, exits with False.
+        - Retrieves data from MongoDB using get_data.
+        - Iterates through each document, extracting "Yıl" field values.
+        - Attempts to convert non-None string values to integers.
+        - Updates MongoDB collection with successful conversions.
+        - Prints a completion message for the conversion process.
+        - Returns True if successful, False if data retrieval fails.
+        """
+
+        print(bcolors.OKCYAN, f"[START] STARTING INTEGER CONVERSION")
+
+        # Check if the edit mode is active using a function is_edit_mode_active()
+        if not is_edit_mode_active():
+            return False
+
+        # Retrieve data from the MongoDB collection using the get_data method
+        result = self.mongo_conn.fetch_all_years()
+
+        # Check if the retrieved result is not None before iterating
+        if result is not None:
+
+            # Iterate through each document in the result
+            for document in tqdm(result, desc="Processing", unit="field"):
+                # Get the value of the field "Yıl" from the current document
+                year_value = document.get("Yıl")
+
+                # Check if the year_value is not None
+                if year_value is not None:
+                    data_type = type(year_value)
+
+                    # If the data type is a string, perform the conversion to an integer
+                    if data_type == str:
+                        # Remove double quotes from the string
+                        year_value = year_value.strip('"')
+
+                        try:
+                            # Attempt to convert the year value to an integer
+                            year_value_as_int = int(year_value)
+
+                            # Update the MongoDB collection with the new integer value
+                            self.mongo_conn.update_documents_by_model(model="Yıl", model_value=year_value,
+                                                                      new_field_value=year_value_as_int)
+
+                        except ValueError as e:
+                            # Handle the case when the conversion to an integer fails
+                            print(f"The value '{year_value}' could not be converted to an integer. Error: {e}")
+
+            print(bcolors.OKGREEN, "[FINISH] INTEGER CONVERSION COMPLETE")
+            return True
+        else:
+            # Handle the case when the result from the MongoDB query is None
+            print(bcolors.FAIL, "[FAIL] FAILED TO RETRIEVE DATA")
+            return False
+
+    def convert_km_to_integer(self):
+
+        print(bcolors.OKCYAN, f"[START] STARTING KM CONVERSION TO INTEGER")
+
+        # Check if the edit mode is active using a function is_edit_mode_active()
+        if not is_edit_mode_active():
+            return False
+
+        # Retrieve data from the MongoDB collection using the get_data method
+        result = self.mongo_conn.fetch_all_km()
+
+        # Check if the retrieved result is not None before iterating
+        if result is not None:
+
+            # Iterate through each document in the result
+            for document in tqdm(result, desc="Processing", unit="field"):
+                # Get the value of the field "Kilometre" from the current document
+                km_value = document.get("Kilometre")
+
+                # Check if the km_value is not None
+                if km_value is not None:
+                    km_type = type(km_value)
+
+                    # If the data type is a string, perform the conversion to an integer
+                    if km_type == str:
+                        # Remove " km" and dots from the string
+                        km_value_splitted = km_value.split(" ")[0].replace(".","")
+
+                        try:
+                            # Attempt to convert the km value to an integer
+                            km_value_as_int = int(km_value_splitted)
+
+                            # Update the MongoDB collection with the new integer value
+                            self.mongo_conn.update_documents_by_model(model="Kilometre", model_value=km_value,
+                                                                      new_field_value=km_value_as_int)
+
+                        except ValueError as e:
+                            # Handle the case when the conversion to an integer fails
+                            print(f"Error: The value '{km_value_splitted}' could not be converted to an integer. Error: {e}")
+
+            print(bcolors.OKGREEN, "[FINISH] INTEGER CONVERSION COMPLETE")
+            return True
+        else:
+            # Handle the case when the result from the MongoDB query is None
+            print(bcolors.FAIL, "[FAIL] FAILED TO RETRIEVE DATA")
+            return False
+    def convert_fiyat_to_integer(self):
+        print(bcolors.OKCYAN, f"[START] STARTING PRICE CONVERSION TO INTEGER")
+
+        # Check if the edit mode is active using a function is_edit_mode_active()
+        if not is_edit_mode_active():
+            return False
+
+        # Retrieve data from the MongoDB collection using the get_data method
+        result = self.mongo_conn.fetch_all_fiyat()
+
+        # Check if the retrieved result is not None before iterating
+        if result is not None:
+
+            # Iterate through each document in the result
+            for document in tqdm(result, desc="Processing", unit="field"):
+                # Get the value of the field "Fiyat" from the current document
+                fiyat_value = document.get("Fiyat")
+
+                # Check if the fiyat_value is not None
+                if fiyat_value is not None:
+                    fiyat_type = type(fiyat_value)
+
+                    # If the fiyat_value is a string, perform the conversion to an integer
+                    if fiyat_type == str:
+                        # Remove " km" and dots from the string
+                        fiyat_value_splitted = fiyat_value.split(" ")[0].replace(".", "")
+
+                        try:
+                            # Attempt to convert the fiyat_value_splitted value to an integer
+                            fiyat_value_as_int = int(fiyat_value_splitted)
+
+                            # Update the MongoDB collection with the new integer value
+                            self.mongo_conn.update_documents_by_model(model="Fiyat", model_value=fiyat_value,
+                                                                      new_field_value=fiyat_value_as_int)
+
+                        except ValueError as e:
+                            # Handle the case when the conversion to an integer fails
+                            print(
+                                f"Error: The value '{fiyat_value_splitted}' could not be converted to an integer. Error: {e}")
+
+            print(bcolors.OKGREEN, "[FINISH] INTEGER CONVERSION COMPLETE")
+            return True
+        else:
+            # Handle the case when the result from the MongoDB query is None
+            print(bcolors.FAIL, "[FAIL] FAILED TO RETRIEVE DATA")
+            return False

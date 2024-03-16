@@ -1,4 +1,4 @@
-DATABASE_NAME = "mydatabase"
+DATABASE_NAME = "dataconverter"
 COLLECTION_NAME = "cars"
 CLIENT_ADR = "mongodb://localhost:27017/"
 

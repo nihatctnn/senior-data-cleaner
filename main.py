@@ -1,5 +1,6 @@
 import time
 from src.DataPreprocessor import DataPreprocessor
+from src.MongoConnector import MongoConnector
 from src.utils import show_mode_status
 
 # Display the status of the mode (edit and safe modes)
@@ -14,3 +15,12 @@ dp.implement_label_mapping()
 time.sleep(2)
 # Remove unused fields from the database for an artificial intelligence model
 dp.remove_unused_field()
+
+# Convert the 'Year' fields to integers
+dp.convert_to_integer()
+
+# Convert the 'Kilometre' fields to integers
+dp.convert_km_to_integer()
+
+# Convert the 'Fiyat' fields to integers
+dp.convert_fiyat_to_integer()

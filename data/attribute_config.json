@@ -18,10 +18,10 @@
     "initial_num" : 30000
   },
   "Yıl" : {
-    "operation" : ""
+    "operation" : "TO_INT"
   },
   "Kilometre" : {
-    "operation" : ""
+    "operation" : "TO_INT"
   },
   "Vites Tipi": {
     "operation" : "LABEL_ENCODE",
@@ -72,13 +72,16 @@
     "operation" : "DELETE"
   },
   "Fiyat" : {
-    "operation" : ""
+    "operation" : "TO_INT"
   },
   "Description" : {
     "operation" : "DELETE"
   },
-  "" : {
-    "operation" : ""
+  "Araç Cinsi (Ruhsat)" : {
+    "operation" : "DELETE"
+  },
+  "Motor Kaputu" : {
+    "operation" : "DELETE"
   }
 
 }

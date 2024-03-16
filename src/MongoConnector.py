@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from pymongo.errors import BulkWriteError
+
 import config
 from src.utils import bcolors
 
@@ -73,7 +74,7 @@ class MongoConnector:
         # Define update data to set the new field value in the documents.
         update_data = {"$set": {model: new_field_value}}
         # Perform the update operation on multiple documents that match the query.
-        result = self.collection.update_many(query, update_data)
+        result = self.collection.update_one(query, update_data)
 
         # Check if the update operation was successful or ignored based on configuration.
         if not config.DB_ERROR_IGNORE and result.modified_count <= 0:
@@ -116,3 +117,62 @@ class MongoConnector:
             print(bcolors.OKGREEN,
                   F"[FINISH] SUCCESSFULLY COPIED S:{source_collection_name} D: {destination_collection_name}")
             return True
+
+    def fetch_all_years(self):
+
+        """
+            Retrieves the 'Yıl' fields of all documents in a MongoDB collection.
+
+            This method fetches the 'Yıl' fields of all documents in the MongoDB collection.
+            It involves a process aimed at obtaining the values of the 'Yıl' fields from every document in the database.
+
+            Args:
+                None
+
+            Returns:
+                result: The retrieved data containing the 'Yıl' fields
+        """
+
+        # Fetching the 'Yıl' fields of all documents
+        result = self.collection.find({}, {"_id": 0, "Yıl": 1})
+
+        return result
+
+    def fetch_all_km(self):
+
+        """
+            Retrieves the 'Kilometre' fields of all documents in a MongoDB collection.
+
+            This method fetches the 'Kilometre' fields of all documents in the MongoDB collection.
+            It involves a process aimed at obtaining the values of the 'Kilometre' fields from every document in the database.
+
+            Args:
+                None
+
+            Returns:
+                result: The retrieved data containing the 'Kilometre' fields
+        """
+
+        # Fetching the 'Kilometre' fields of all documents
+        result = self.collection.find({}, {"_id": 0, "Kilometre": 1})
+
+        return result
+
+    def fetch_all_fiyat(self):
+        """
+            Retrieves the 'Fiyat' fields of all documents in a MongoDB collection.
+
+            This method fetches the 'Fiyat' fields of all documents in the MongoDB collection.
+            It involves a process aimed at obtaining the values of the 'Fiyat' fields from every document in the database.
+
+            Args:
+                None
+
+            Returns:
+                result: The retrieved data containing the 'Fiyat' fields
+        """
+
+        # Fetching the 'Fiyat' fields of all documents
+        result = self.collection.find({}, {"_id": 0, "Fiyat": 1})
+
+        return result

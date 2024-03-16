@@ -19,7 +19,7 @@ class DataFinder:
                     None: If the file is not found or an error occurs during loading.
                 """
         try:
-            with open(file_path, "r") as file:
+            with open(file_path, "r", encoding='utf-8') as file:
                 print(bcolors.OKCYAN, f"[INFO] FILE IS EXIST path:{file_path}")
                 return json.load(file)
         except FileNotFoundError:
@@ -58,6 +58,3 @@ class DataFinder:
         else:
             print(bcolors.OKCYAN, f"[INFO] FILE IS EXIST path:{file_path}")
             return True
-
-
-
