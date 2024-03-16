@@ -1,6 +1,5 @@
 import config
 
-
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -39,7 +38,6 @@ def is_safe_mode_active():
         return True
     else:
         return False
-
 
 def show_mode_status():
     print(bcolors.OKCYAN, f"[INFO] SAFA MODE ON")

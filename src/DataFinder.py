@@ -58,6 +58,3 @@ class DataFinder:
         else:
             print(bcolors.OKCYAN, f"[INFO] FILE IS EXIST path:{file_path}")
             return True
-
-
-

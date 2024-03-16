@@ -1,4 +1,4 @@
-DATABASE_NAME = "mydatabase"
+DATABASE_NAME = "dataconverter"
 COLLECTION_NAME = "cars"
 CLIENT_ADR = "mongodb://localhost:27017/"
 
@@ -7,4 +7,4 @@ FIELD_CONFIG_PATH = "./data/attribute_config.json"
 
 SAFE_MODE = 1
 EDIT_MODE = 1
-DB_ERROR_IGNORE = 0
+DB_ERROR_IGNORE = 1
